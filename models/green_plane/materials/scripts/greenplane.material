@@ -1,0 +1,13 @@
+material MyModel/Image
+{
+    technique
+    {
+        pass
+        {
+            texture_unit
+            {
+               texture grass2.jpg
+            }
+        }
+    }
+}
