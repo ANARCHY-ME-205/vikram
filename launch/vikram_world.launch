@@ -22,9 +22,14 @@
   <node pkg="vikram" type="detection.py" name="objectDetect"/>
 
   <node pkg="vikram" type="bird.py" name="BIRD_VIEW"/>
+  
+  <param name="robot_description" textfile="$(find vikram)/models/vik/model.urdf"/>
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" >
+      <remap from="robot_description" to="robot_description" />
+      <remap from="joint_states" to="joint_states" /> </node>
  
   <node name="vikram_spawn" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
-    args="-sdf -file $(find vikram)/models/vik/model.sdf -x 0 -y 0 -z 0 -model vikram "/>
+    args="-urdf -file $(find vikram)/models/vik/model.urdf -x 0 -y 0 -z 0 -model vikram "/>
   
  
 </launch>

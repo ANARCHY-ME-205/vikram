@@ -1,0 +1,297 @@
+<?xml version="1.0"?>
+<robot name="vikram">
+
+    <link name="body_link">
+  <inertial>
+    <mass value="10" />
+    <inertia ixx="0.166667" ixy="0" ixz="0" iyy="0.166667" iyz="0" izz="0.166667" />
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </inertial>
+  <visual name="visual">
+    <origin xyz="0 0 0" rpy="0 -0 0" />
+    <geometry>
+      <mesh filename="package://vikram/meshes/bot2.dae" scale="1 1 1" />
+    </geometry>
+
+  </visual>
+  <collision name="collision">
+    <origin xyz="0 0 0" rpy="0 -0 0" />
+    <geometry>
+      <mesh filename="package://vikram/meshes/bot2.dae" scale="1 1 1" />
+    </geometry>
+    <origin rpy="0 -0 0" xyz="0 0 0"/>
+  </collision>
+  
+  <gravity>true</gravity>
+  <self_collide>false</self_collide>
+  <kinematic>false</kinematic>
+  <enable_wind>false</enable_wind>
+</link> 
+
+  <link name="depth_camera">
+        <inertial>
+    <mass value="0.1" />
+    <inertia ixx="0.166667" ixy="0" ixz="0" iyy="0.166667" iyz="0" izz="0.166667" />
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </inertial>
+      <collision>
+        <geometry>
+            <box size="0.05 0.05 0.05"/>
+        </geometry>
+      </collision>
+      <visual>
+        <geometry>
+           <box size="0.05 0.05 0.05"/>
+        </geometry>
+      </visual>
+      </link>
+      <gazebo reference="camera">
+      <sensor name="camera1" type="depth">
+        <update_rate>20</update_rate>
+        <camera>
+          <horizontal_fov>1.047198</horizontal_fov>
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.05</near>
+            <far>3</far>
+          </clip>
+        </camera>
+        <plugin name="camera_plugin" filename="libgazebo_ros_openni_kinect.so">
+          <baseline>0.2</baseline>
+          <alwaysOn>true</alwaysOn>
+          <!-- Keep this zero, update_rate in the parent <sensor> tag
+            will control the frame rate. -->
+          <updateRate>0.0</updateRate>
+          <cameraName>camera_ir</cameraName>
+          <imageTopicName>/camera/color/image_raw</imageTopicName>
+          <cameraInfoTopicName>/camera/color/camera_info</cameraInfoTopicName>
+          <depthImageTopicName>/camera/depth/image_raw</depthImageTopicName>
+          <depthImageCameraInfoTopicName>/camera/depth/camera_info</depthImageCameraInfoTopicName>
+          <pointCloudTopicName>/camera/depth/points</pointCloudTopicName>
+          <frameName>camera_link</frameName>
+          <pointCloudCutoff>0.5</pointCloudCutoff>
+          <pointCloudCutoffMax>3.0</pointCloudCutoffMax>
+          <distortionK1>0</distortionK1>
+          <distortionK2>0</distortionK2>
+          <distortionK3>0</distortionK3>
+          <distortionT1>0</distortionT1>
+          <distortionT2>0</distortionT2>
+          <CxPrime>0</CxPrime>
+          <Cx>0</Cx>
+          <Cy>0</Cy>
+          <focalLength>0</focalLength>
+          <hackBaseline>0</hackBaseline>
+        </plugin>
+      </sensor>
+      </gazebo>
+
+<link name="wheel1_link">
+  <inertial>
+    <mass value="5" />
+    <inertia ixx="0.166667" ixy="0" ixz="0" iyy="0.166667" iyz="0" izz="0.166667" />
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </inertial>
+  <visual name="visual">
+    <origin xyz="0 0 0" rpy="0 -0 0" />
+    <geometry>
+      <mesh filename="package://vikram/meshes/tyre1.dae" scale="1 1 1" />
+    </geometry>
+
+  </visual>
+  <collision name="collision">
+    <origin xyz="0 0 0" rpy="0 -0 0" />
+    <geometry>
+      <mesh filename="package://vikram/meshes/tyre1.dae" scale="1 1 1" />
+    </geometry>
+    <max_contacts value="10" />
+    <laser_retro value="0" />
+  </collision>
+  <gravity value="1" />
+  <self_collide value="0" />
+  <kinematic value="0" />
+  <enable_wind value="0" />
+
+</link>
+
+<link name="wheel2_link">
+  <inertial>
+    <mass value="5" />
+    <inertia ixx="0.166667" ixy="0" ixz="0" iyy="0.166667" iyz="0" izz="0.166667" />
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </inertial>
+  <visual name="visual">
+    <origin xyz="0 0 0" rpy="0 -0 0" />
+    <geometry>
+      <mesh filename="package://vikram/meshes/tyre1.dae" scale="1 1 1" />
+    </geometry>
+
+  </visual>
+  <collision name="collision">
+    <origin xyz="0 0 0" rpy="0 -0 0" />
+    <geometry>
+      <mesh filename="package://vikram/meshes/tyre1.dae" scale="1 1 1" />
+    </geometry>
+    <max_contacts value="10" />
+    <laser_retro value="0" />
+  </collision>
+  <gravity value="1" />
+  <self_collide value="0" />
+  <kinematic value="0" />
+  <enable_wind value="0" />
+  <pose xyz="0 0.33 -0" rpy="0 -0 0" />
+</link>
+
+
+<link name="castorx">
+  <inertial>
+    <mass value="3"/>
+    <inertia ixx="0.00234889" ixy="0" ixz="0" iyy="0.00234889" iyz="0" izz="0.00445194"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </inertial>
+  <visual name="visual">
+    <origin rpy="0 -0 0" xyz="0 0 0"/>
+    <geometry>
+      <cylinder length="0.0221741" radius="0.0544788"/>
+    </geometry>
+    <material name="material">
+      <script>
+        <uri>file://media/materials/scripts/gazebo.material</uri>
+        <name>Gazebo/Grey</name>
+      </script>
+      <color rgba="0.7 0.7 0.7 1"/>
+      <specular rgba="0.01 0.01 0.01 1"/>
+      <emission rgba="0 0 0 1"/>
+    </material>
+  </visual>
+  <collision name="collision">
+    <origin rpy="0 -0 0" xyz="0 0 0"/>
+    <geometry>
+      <cylinder length="0.022174" radius="0.054479"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="castorz">
+  <inertial>
+    <mass value="2"/>
+    <inertia ixx="0.0032459" ixy="0" ixz="0" iyy="0.0032459" iyz="0" izz="0.0064"/>
+   <origin rpy="0 0 0" xyz="0 0 0"/>
+  </inertial>
+  <visual name="visual">
+    <origin xyz="0 0 0" rpy="0 -0 0"/>
+    <geometry>
+      <cylinder radius="0.08" length="0.0165956"/>
+    </geometry>
+    <material name="material">
+      <color rgba="0.7 0.7 0.7 1"/>
+    </material>
+  </visual>
+  <collision name="collision">
+    <origin xyz="0 0 0" rpy="0 -0 0"/>
+    <geometry>
+      <cylinder radius="0.08" length="0.016596"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="body_castorz" type="continuous">
+  <parent link="body_link" />
+  <child link="castorz" />
+  <origin xyz="0.4 0 0" rpy="0 0 0" />
+  <axis xyz="0 0 1" />
+
+</joint>
+
+
+
+
+<joint name="body_depthcam" type="fixed">
+  <parent link="body_link" />
+  <child link="depth_camera" />
+  <origin xyz="0.8 0 1.2" rpy="0 0 0" />
+
+</joint>
+
+<joint name="body_wheel1" type="continuous">
+  <parent link="body_link"/>
+  <child link="wheel1_link"/>
+  <origin xyz="0 -0.33 -0" rpy="0 -0 0"/>
+  <axis xyz="0 1 0"/>
+
+</joint>
+
+<joint name="body_wheel2" type="continuous">
+  <parent link="body_link"/>
+  <child link="wheel2_link"/>
+  <origin xyz="0 0.33 0" rpy="0 -0 0"/>
+  <axis xyz="0 1 0"/>
+	
+</joint>
+
+<joint name="castor_z_x" type="continuous">
+      <parent link="castorz"/>
+  <child link="castorx"/>
+      <origin xyz="0 0 -0.06" rpy="1.5707 0 0" />
+      <axis xyz="0 0 1" />
+   
+    </joint>
+
+
+
+  <gazebo>
+  <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+
+    <!-- Plugin update rate in Hz -->
+    <updateRate>1000.0</updateRate>
+
+    <!-- Name of left joint, defaults to `left_joint` -->
+    <leftJoint>body_wheel2</leftJoint>
+
+    <!-- Name of right joint, defaults to `right_joint` -->
+    <rightJoint>body_wheel1</rightJoint>
+
+    <!-- The distance from the center of one wheel to the other, in meters, defaults to 0.34 m -->
+    <wheelSeparation>0.66</wheelSeparation>
+
+    <!-- Diameter of the wheels, in meters, defaults to 0.15 m -->
+    <wheelDiameter>0.27</wheelDiameter>
+
+    <!-- Wheel acceleration, in rad/s^2, defaults to 0.0 rad/s^2 -->
+    <wheelAcceleration>1.0</wheelAcceleration>
+
+    <!-- Maximum torque which the wheels can produce, in Nm, defaults to 5 Nm -->
+    <wheelTorque>20</wheelTorque>
+
+    <!-- Topic to receive geometry_msgs/Twist message commands, defaults to `cmd_vel` -->
+    <commandTopic>cmd_vel</commandTopic>
+
+    <!-- Topic to publish nav_msgs/Odometry messages, defaults to `odom` -->
+    <odometryTopic>odom</odometryTopic>
+
+    <!-- Odometry frame, defaults to `odom` -->
+    <odometryFrame>odom</odometryFrame>
+
+    <!-- Robot frame to calculate odometry from, defaults to `base_footprint` -->
+    <robotBaseFrame>base_footprint</robotBaseFrame>
+
+    <!-- Odometry source, 0 for ENCODER, 1 for WORLD, defaults to WORLD -->
+    <odometrySource>1</odometrySource>
+
+    <!-- Set to true to publish transforms for the wheel links, defaults to false -->
+    <publishWheelTF>true</publishWheelTF>
+
+    <!-- Set to true to publish transforms for the odometry, defaults to true -->
+    <publishOdom>true</publishOdom>
+
+    <!-- Set to true to publish sensor_msgs/JointState on /joint_states for the wheel joints, defaults to false -->
+    <publishWheelJointState>true</publishWheelJointState>
+
+    <!-- Set to true to swap right and left wheels, defaults to true -->
+    <legacyMode>false</legacyMode>
+  </plugin>
+</gazebo>
+</robot>
