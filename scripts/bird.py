@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-
-
 import cv2
 import rospy
 import numpy as np
@@ -38,7 +36,7 @@ def conversion(image : Image ):
 
     # Compute the homography matrix using the corresponding points
     H, _ = cv2.findHomography(image_points, birdseye_points)
-
+    #rospy.logerr(H)
     # Define the homography matrix for the bird's eye view
     '''H = np.array([[homography_00, homography_01, homography_02],
                 [homography_10, homography_11, homography_12],

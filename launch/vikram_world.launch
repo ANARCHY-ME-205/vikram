@@ -20,13 +20,11 @@
    <node pkg="vikram" type="vikram_teleop_key.py" name="vikram_teleop_key"/>
   
   <node pkg="vikram" type="detection.py" name="objectDetect"/>
-  
+
   <node pkg="vikram" type="bird.py" name="BIRD_VIEW"/>
-  
+ 
   <node name="vikram_spawn" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
     args="-sdf -file $(find vikram)/models/vik/model.sdf -x 0 -y 0 -z 0 -model vikram "/>
-    
- 
   
  
 </launch>
