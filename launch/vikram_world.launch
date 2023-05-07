@@ -22,6 +22,7 @@
   <node pkg="vikram" type="detection.py" name="objectDetect"/>
 
   <node pkg="vikram" type="bird.py" name="BIRD_VIEW"/>
+  <node pkg="vikram" type="pointcloud.py" name="POINT CLOUD"/>
   
   <param name="robot_description" textfile="$(find vikram)/models/vik/model.urdf"/>
   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" >

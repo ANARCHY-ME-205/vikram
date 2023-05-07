@@ -28,12 +28,12 @@ def detect (image : Image):
     contours, hierarchies = cv2.findContours(canny, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     #cv2.drawContours(blank, contours, -1, (0,0,255),1)
     #cv2.imshow('CONTOURS DRAWN',blank)
-
+    #print(contours)
     for contour in contours:
-    
+        #print(contour)
         x, y, w, h = cv2.boundingRect(contour)
         cv2.rectangle(img,pt1=(x,y),pt2=(x+w,y+h),color=(0,0,255),thickness=1)
-
+    
     image = bridge.cv2_to_imgmsg(img, encoding='bgr8')    
     pub1.publish(image)
     #pub.publish(image)
